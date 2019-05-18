@@ -23,6 +23,7 @@ class cart extends Component {
       super()
       this.state = {
           discountCode: null,
+          error: false,
           promo: false,
           details: false,
           itemDetails: {
@@ -94,8 +95,18 @@ class cart extends Component {
       })
   }
 
-  discount = () => {
-      this.props.getDiscount(this.state.discountCode)
+  discount = async () => {
+      await this.props.getDiscount(this.state.discountCode)
+      let error = await this.props.cartReducer.error
+        if(error === "Invalid Code"){
+            this.setState({
+                error: true
+            })
+        }else{
+            this.setState({
+                error: false
+            })
+        }
       this.refs.discountCode.value = ''
   }
 
@@ -104,6 +115,7 @@ class cart extends Component {
           <div style={{"textAlign": "initial"}}>
               <p style={{'paddingLeft': '15px'}}>Promo Code</p>
               <div style={{'paddingLeft': '15px'}}>
+                  {this.state.error ? <p style={{'color': 'red'}}>Invalid Discount Code Entered</p> : null}
                   <input 
                     onChange={this.code}
                     ref="discountCode"
@@ -128,8 +140,6 @@ class cart extends Component {
         <PriceTitle name='Pickup Savings' price={this.state.pricing.savings} 
             stylesTitle="pickup-title" stylesPrice="pickup-price" position="botton" title={title}
         />
-
-
 
         <PriceTitle name='Est. taxes & fees' price={this.state.pricing.tax}/>
 
@@ -169,7 +179,6 @@ class cart extends Component {
         <div>
             <br/>
             <br/>
-
             {this.state.promo ? this.promoExpand() : null}
         </div>
 

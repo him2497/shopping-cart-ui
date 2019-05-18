@@ -28,7 +28,6 @@ export const cartAction = () => dispatch => {
   }
 
 export const getDiscount = (code) => dispatch => {
-    console.log("here", code)
     if (code === "DISCOUNT"){
         let data = pricingData
         data['pricing']['total'] = pricingData.pricing.total * 0.90
@@ -36,6 +35,11 @@ export const getDiscount = (code) => dispatch => {
         dispatch({
             type: 'CART_DISCOUNT',
             payload: data
+          })
+    }else{
+        dispatch({
+            type: 'CART_DISCOUNT_ERROR',
+            payload: "Invalid Code"
           })
     }
 }

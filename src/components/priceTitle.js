@@ -6,7 +6,6 @@ export default class priceTitle extends Component {
 
       if(this.props.position){
           let {title, stylesTitle, stylesPrice, position, name, price} = this.props
-          console.log(this.props)
           return (
             <div>
                 <div>

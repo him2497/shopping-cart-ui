@@ -8,6 +8,10 @@ export default (state = {}, action) => {
         return {
           result: action.payload
         }
+       case 'CART_DISCOUNT_ERROR':
+        return {
+          error: action.payload
+        }
       default:
         return state
     }
