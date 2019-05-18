@@ -5,7 +5,7 @@ import Collapse from './images/minus.png'
 import Chair from './images/chair.jpeg'
 import { connect } from 'react-redux';
 import { cartAction, getDiscount } from '../actions/cartAction'
-import PriceTitle from './priceTitle'
+import PriceCategories from './priceCategories'
 
 const title = "Pickup the order in the store to cut down costs."
 
@@ -112,7 +112,7 @@ class cart extends Component {
 
   promoExpand = () => {
       return(
-          <div style={{"textAlign": "initial"}}>
+          <div style={{"textAlign": "initial", "display": "inline"}}>
               <p style={{'paddingLeft': '15px'}}>Promo Code</p>
               <div style={{'paddingLeft': '15px'}}>
                   {this.state.error ? <p style={{'color': 'red'}}>Invalid Discount Code Entered</p> : null}
@@ -135,23 +135,22 @@ class cart extends Component {
         <div className='title'>My Cart</div>
         <div className='divider'></div>
 
-        <PriceTitle name='Subtotal' price={this.state.pricing.subtotal}/>
+        <PriceCategories name='Subtotal' price={this.state.pricing.subtotal}/>
         
-        <PriceTitle name='Pickup Savings' price={this.state.pricing.savings} 
-            stylesTitle="pickup-title" stylesPrice="pickup-price" position="botton" title={title}
+        <PriceCategories name='Pickup Savings' price={this.state.pricing.savings} 
+            stylesTitle="pickup-title" stylesPrice="pickup-price" position="bottom" title={title}
         />
 
-        <PriceTitle name='Est. taxes & fees' price={this.state.pricing.tax}/>
+        <PriceCategories name='Est. taxes & fees' price={this.state.pricing.tax}/>
+
 
         <div className='divider'></div>
-
         <div>
             <p className="total-title">Est. total</p>
             <p className="total-price">{this.state.pricing.total}</p>
         </div>
         
         <div style={{"clear": "both"}}></div>
-
 
         <div onClick={this.details} className="collapse">
             <p> {this.state.details ? 'Hide item details' : 'See item details'}        
@@ -164,9 +163,7 @@ class cart extends Component {
                 {this.state.details ? this.detailsExpand() : null}
             </div>
         </div>
-
         <div className='divider'></div>
-
         <div onClick={this.promo} className="collapse">
             <p>{this.state.promo ? 'Hide promo code' : 'Apply promo code'}
                 <img alt="Promo" 
@@ -175,7 +172,7 @@ class cart extends Component {
                 />
             </p>
         </div>
-
+        
         <div>
             <br/>
             <br/>

@@ -9,10 +9,10 @@ export default class priceTitle extends Component {
           return (
             <div>
                 <div>
-                <p tooltip={title} tooltip-position={position} className={stylesTitle}>{name}</p>
-                <p className={stylesPrice}>-{price}</p>
-                </div>
-                <div style={{"clear": "both"}}></div>
+                  <p tooltip={title} tooltip-position={position} className={stylesTitle}>{name}</p>
+                  <p className={stylesPrice}>-{price}</p>
+                  </div>
+                  <div style={{"clear": "both"}}></div>
             </div>
           )
       }
