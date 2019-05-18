@@ -31,7 +31,6 @@ export const getDiscount = (code) => dispatch => {
     if (code === "DISCOUNT"){
         let data = pricingData
         data['pricing']['total'] = pricingData.pricing.total * 0.90
-        console.log(data)
         dispatch({
             type: 'CART_DISCOUNT',
             payload: data
